@@ -38,6 +38,8 @@ def getNutrition(catstr, foodstr, bs4_content):
 	#Category,Food Name,Calorie,Protein,Fat,Carbonhydrate,Fiber,Vitamin A,Carotene,....
 	finalstring = catstr + ',' + foodstr
 	for allcontent in bs4_content.findAll("table",attrs={"class":"bx"}):
+		
+		#csv title
 		global k
 		if k==0:
 			title_string = "类别,名称,"
@@ -46,6 +48,7 @@ def getNutrition(catstr, foodstr, bs4_content):
 			k=k+1
 			print title_string
 
+		#csv data
 		for nutrition in allcontent.findAll("td"):
 			finalstring += ',' + nutrition.text.strip()
 	print finalstring
